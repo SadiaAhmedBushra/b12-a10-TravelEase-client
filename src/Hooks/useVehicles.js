@@ -9,7 +9,7 @@ const useVehicles = () => {
   useEffect(() => {
     setLoading(true);
 
-    axios('/vehicles.json')   
+    axios('http://localhost:3000/vehicles')   
       .then((data) => setVehicles(data.data))
       .catch((err) => setError(err))
       .finally(() => {

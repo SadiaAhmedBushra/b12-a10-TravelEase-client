@@ -10,6 +10,8 @@ import Login from "../pages/LogIn";
 import Register from "../pages/Register";
 import ForgotPassword from "../pages/ForgotPassword";
 import AuthLayout from "../Layouts/AuthLayout";
+import PrivateRoute from "../provider/PrivateRoute";
+import VehicleDetailsPage from "../pages/VehicleDetailsPage";
 
 const router = createBrowserRouter([
   {
@@ -27,18 +29,53 @@ const router = createBrowserRouter([
       },
       {
         path: "/add-vehicles",
-        element: <AddVehicles />,
+        element: (
+          <PrivateRoute>
+            <AddVehicles />
+          </PrivateRoute>
+        ),
       },
+
       {
         path: "/my-vehicles",
-        element: <MyVehicles />,
+        element: (
+          <PrivateRoute>
+            <MyVehicles />
+          </PrivateRoute>
+        ),
       },
+
       {
         path: "/my-bookings",
-        element: <MyBookings />,
+        element: (
+          <PrivateRoute>
+            <MyBookings />
+          </PrivateRoute>
+        ),
       },
+        {
+  path: "/vehicledetails/:id",
+  element: (
+    <PrivateRoute>
+      <VehicleDetailsPage></VehicleDetailsPage>
+    </PrivateRoute>
+  ),
+  loader: async ({ params }) => {
+    const res = await fetch(`http://localhost:3000/vehicles/${params.id}`);
+
+    if (!res.ok) {
+      throw new Response("Not Found", { status: 404 });
+    }
+
+    const data = await res.json();
+    return data.result; // return only the vehicle data here
+  },
+  hydrateFallbackElement: <LoadingPage></LoadingPage>,
+}
+
     ],
   },
+
   {
     path: "/auth",
     element: <AuthLayout></AuthLayout>,
@@ -75,6 +112,7 @@ const router = createBrowserRouter([
   //     </PrivateRoute>
   //   ),
   // },
+
   // {
   //   path: "/*",
   //   element: <ErrorPage></ErrorPage>,

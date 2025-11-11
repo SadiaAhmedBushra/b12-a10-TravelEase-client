@@ -1,4 +1,4 @@
-import React, { use, useState } from "react";
+import React, { useContext, useState, useEffect, useRef } from "react";
 import { FaCar } from "react-icons/fa";
 import { Link, NavLink } from "react-router";
 import { AuthContext } from "../provider/AuthProvider";
@@ -6,8 +6,26 @@ import { MdLogout, MdOutlineLogin } from "react-icons/md";
 import { FaRegCircleUser } from "react-icons/fa6";
 
 const Header = () => {
-    const { user, logOut } = use(AuthContext);
+  const { user, logOut } = useContext(AuthContext);
   const [dropdown, setDropdown] = useState(false);
+
+   const dropdownRef = useRef(null);
+
+    useEffect(() => {
+      const handleClickOutside = (event) => {
+        if (
+          dropdownRef.current &&
+          !dropdownRef.current.contains(event.target)
+        ) {
+          setDropdown(false);
+        }
+      };
+
+      document.addEventListener("mousedown", handleClickOutside);
+      return () => {
+        document.removeEventListener("mousedown", handleClickOutside);
+      };
+    }, []);
 
   const handleLogOut = () => {
     logOut()
@@ -17,6 +35,8 @@ const Header = () => {
       .catch((error) => {
         console.log(error);
       });
+
+   
   };
   return (
     //  Home, All Vehicles, Add Vehicle, My Vehicles, My Bookings, Login/Register
@@ -62,7 +82,7 @@ const Header = () => {
                   isActive ? "text-[#1A73E8] font-bold bg-base-200" : ""
                 }
               >
-                All Vehicles
+                Vehicles
               </NavLink>
             </li>
             <li>
@@ -107,7 +127,7 @@ const Header = () => {
         </div>
       </div>
 
-      <div className="navbar-end gap-80 ">
+      <div className="navbar-center gap-5 flex-row items-center">
         <div className="hidden lg:flex">
           <ul className="flex flex-row justify-between items-center gap-5 px-1">
             <li>
@@ -127,7 +147,7 @@ const Header = () => {
                   isActive ? "text-[#1A73E8] font-bold bg-base-200" : ""
                 }
               >
-                All Vehicles
+                Vehicles
               </NavLink>
             </li>
             <li>
@@ -162,13 +182,15 @@ const Header = () => {
             </li>
           </ul>
         </div>
-
+      </div>
+      <div className="navbar-end gap-5 flex-row items-center">
+        {/* LogIN/Register Buttons */}
         <div className="flex items-center justify-center">
           {/* <Link to="/auth/login" className="px-8 py-1 bg-primary text-white rounded-full text-lg hover:bg-[#dcdcdc] font-bold hover:text-primary transition">
             Login
           </Link> */}
 
-            <div
+          <div
             onClick={() => setDropdown(!dropdown)}
             className="cursor-pointer"
           >
@@ -178,27 +200,28 @@ const Header = () => {
                 alt={user.displayName}
                 className="w-8 h-8 rounded-full bg-base-100"
               />
-            ) : ""}
-          </div>
-                    {user &&
-            dropdown && ( 
-              <div className="absolute right-0 z-10 mt-12 bg-white rounded p-3 flex flex-col gap-2 ">
-                <span className="">{user.displayName}</span>{" "}
-                <span className="text-xs">{user && user.email}</span>
-                <button
-                  onClick={handleLogOut}
-                  className="btn btn-primary flex items-center gap-2"
-                >
-                  <MdLogout size={18} /> Log Out
-                </button>
-              </div>
+            ) : (
+              ""
             )}
+          </div>
+          {user && dropdown && (
+            <div className="absolute right-0 z-10 mt-12 bg-white rounded p-3 flex flex-col gap-2 "  ref={dropdownRef}>
+              <span className="">{user.displayName}</span>{" "}
+              <span className="text-xs">{user && user.email}</span>
+              <button
+                onClick={handleLogOut}
+                className="btn btn-primary flex items-center gap-2"
+              >
+                <MdLogout size={18} /> Log Out
+              </button>
+            </div>
+          )}
 
-          {!user && ( 
+          {!user && (
             <div className="flex lg:flex-row flex-col gap-2">
               <Link
                 to="/auth/login"
-                className="btn btn-primary flex items-center gap-2"
+                className="btn btn-primary btn-gradient flex items-center gap-2"
               >
                 <MdOutlineLogin size={18} /> Log In
               </Link>

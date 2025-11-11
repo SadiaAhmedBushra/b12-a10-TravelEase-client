@@ -8,8 +8,16 @@ import {
   FaRegStar,
 } from "react-icons/fa";
 import { FaLocationDot } from "react-icons/fa6";
+import { Link, useLoaderData } from "react-router";
 
 const VehicleCard = ({ vehicle }) => {
+// const vehicle = useLoaderData();  
+// const data = useLoaderData();
+// const vehicle = data.result;  
+
+
+  // const data = useLoaderData();
+  // const vehicle = data.result;
   return (
     <div className="bg-white rounded-3xl shadow-md overflow-hidden transform hover:scale-105 hover:shadow-xl transition-transform duration-300">
       <div className="relative overflow-hidden rounded-t-3xl">
@@ -90,9 +98,9 @@ const VehicleCard = ({ vehicle }) => {
             {vehicle.pricePerDay} BDT / day
           </button>
 
-          <button className="w-full py-2 border border-primary text-primary rounded-full text-lg font-semibold hover:bg-primary hover:text-white transition">
+            <Link to={`/vehicledetails/${vehicle._id}`} className="w-full py-2 border border-primary text-primary rounded-full text-lg font-semibold hover:bg-primary hover:text-white transition">
             View Details
-          </button>
+          </Link>
         </div>
       </div>
     </div>

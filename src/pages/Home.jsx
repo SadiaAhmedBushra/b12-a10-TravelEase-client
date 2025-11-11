@@ -70,7 +70,7 @@ const Home = () => {
             {/* Button */}
             <button
               onClick={() => navigate("/vehicles")}
-              className="mt-6 px-8 py-3 bg-[#1c1c84] text-white rounded-full text-lg hover:bg-[#dcdcdc] font-bold hover:text-primary transition"
+              className="mt-6 px-8 py-3 btn-gradient bg-[#1c1c84] text-white rounded-full text-lg hover:bg-[#dcdcdc] font-bold hover:text-primary transition"
             >
               All Vehicles
             </button>
