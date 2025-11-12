@@ -72,7 +72,6 @@ const Register = () => {
             navigate("./");
           })
           .catch((error) => {
-            // setUser(user);
             setUser({ ...user, displayName: name, photoURL: url });
           });
 
@@ -80,8 +79,6 @@ const Register = () => {
       })
       .catch((error) => {
         const errorCode = error.code;
-        // const errorMessage = error.message;
-        // alert(errorMessage);
         setError(errorCode);
         toast.error("Sign Up unsuccessful!");
       });
@@ -92,9 +89,9 @@ const Register = () => {
 
       <div className="w-11/12 mx-auto my-10">
         <div className="flex flex-col justify-items-center mx-auto gap-4">
-          <div className="text-center mb-5">
-            <h1 className="text-3xl font-bold">Register now!</h1>
-          </div>
+          
+            <h1 className="text-center">Register now!</h1>
+         
           <div className="mx-auto w-full max-w-sm shadow-2xl bg-base-200 rounded">
             <form onSubmit={handleRegister} className="card-body">
               <fieldset className="fieldset">
@@ -143,9 +140,9 @@ const Register = () => {
                     onClick={() => setHidePassword(!hidePassword)}
                   >
                     {hidePassword ? (
-                      <BiSolidShow size={20} className="text-base-300" />
+                      <BiSolidShow size={20} className="text-base-800" />
                     ) : (
-                      <BiSolidHide size={20} className="text-base-300" />
+                      <BiSolidHide size={20} className="text-base-800" />
                     )}{" "}
                   </span>
                 </div>
@@ -153,12 +150,12 @@ const Register = () => {
                   <p className="text-xs text-error">{passwordError}</p>
                 )}
                 {error && <p className="text-xs text-error">{error}</p>}
-                <button type="submit" className="btn btn-primary mt-4">
+                <button type="submit" className="btn btn-gradient mt-4">
                   Register
                 </button>
                 <p>
                   Already Have an Account?<span> </span>
-                  <Link to="/auth/login" className="text-primary font-bold">
+                  <Link to="/auth/login" className="text-gradient font-bold">
                     Log In
                   </Link>
                 </p>

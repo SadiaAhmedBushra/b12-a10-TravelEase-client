@@ -51,7 +51,7 @@ const Header = () => {
           </div>
           <ul
             tabIndex="-1"
-            className="menu menu-sm dropdown-content bg-base-100 z-1 mt-3 w-52 p-2 "
+            className="menu menu-sm dropdown-content bg-base-100 z-10 mt-3 w-52 p-2 "
           >
             <li>
               <NavLink
@@ -111,6 +111,17 @@ const Header = () => {
                 My Bookings
               </NavLink>
             </li>
+            <li className="mt-2 flex items-center justify-center">
+              <label className="flex items-center gap-2 cursor-pointer">
+                <span className="text-sm">Dark Mode</span>
+                <input
+                  type="checkbox"
+                  checked={theme === "dark"}
+                  onChange={(e) => handleTheme(e.target.checked)}
+                  className="toggle"
+                />
+              </label>
+            </li>
           </ul>
         </div>
 
@@ -123,77 +134,74 @@ const Header = () => {
         </div>
       </div>
 
-      <div className="navbar-center gap-5 flex-row items-center">
-        <div className="hidden lg:flex">
-          <ul className="flex flex-row justify-between items-center gap-5 px-1">
-            <li>
-              <NavLink
-                to="/"
-                className={({ isActive }) =>
-                  isActive
-                    ? "text-primary border-b-2 border-primary font-bold"
-                    : ""
-                }
-              >
-                Home
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                to="/vehicles"
-                className={({ isActive }) =>
-                  isActive
-                    ? "text-primary border-b-2 border-primary font-bold"
-                    : ""
-                }
-              >
-                Vehicles
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                to="/add-vehicles"
-                className={({ isActive }) =>
-                  isActive
-                    ? "text-primary border-b-2 border-primary font-bold"
-                    : ""
-                }
-              >
-                Add Vehicle
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                to="/my-vehicles"
-                className={({ isActive }) =>
-                  isActive
-                    ? "text-primary border-b-2 border-primary font-bold"
-                    : ""
-                }
-              >
-                My Vehicles
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                to="/my-bookings"
-                className={({ isActive }) =>
-                  isActive
-                    ? "text-primary border-b-2 border-primary font-bold"
-                    : ""
-                }
-              >
-                My Bookings
-              </NavLink>
-            </li>
-          </ul>
-        </div>
+      <div className="navbar-center gap-5 flex-row items-center hidden lg:flex">
+        <ul className="flex flex-row justify-between items-center gap-5 px-1">
+          <li>
+            <NavLink
+              to="/"
+              className={({ isActive }) =>
+                isActive
+                  ? "text-primary border-b-2 border-primary font-bold"
+                  : ""
+              }
+            >
+              Home
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/vehicles"
+              className={({ isActive }) =>
+                isActive
+                  ? "text-primary border-b-2 border-primary font-bold"
+                  : ""
+              }
+            >
+              Vehicles
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/add-vehicles"
+              className={({ isActive }) =>
+                isActive
+                  ? "text-primary border-b-2 border-primary font-bold"
+                  : ""
+              }
+            >
+              Add Vehicle
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/my-vehicles"
+              className={({ isActive }) =>
+                isActive
+                  ? "text-primary border-b-2 border-primary font-bold"
+                  : ""
+              }
+            >
+              My Vehicles
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/my-bookings"
+              className={({ isActive }) =>
+                isActive
+                  ? "text-primary border-b-2 border-primary font-bold"
+                  : ""
+              }
+            >
+              My Bookings
+            </NavLink>
+          </li>
+        </ul>
       </div>
 
       <div className="navbar-end gap-5 flex-col-reverse md:flex-row lg:flex-row items-center">
-        {/* Theme toggle always visible */}
         <label className="flex items-center gap-2 cursor-pointer">
-          <span className="text-sm">Dark Mode</span>
+          <span className="text-sm hidden lg:inline">Dark Mode</span>
           <input
             type="checkbox"
             checked={theme === "dark"}
@@ -227,7 +235,7 @@ const Header = () => {
             </Link>
             <Link
               to="/auth/register"
-              className="btn btn-base-100 flex items-center gap-2"
+              className="btn border-2 border-primary rounded-full px-6 flex items-center gap-2"
             >
               Register
             </Link>

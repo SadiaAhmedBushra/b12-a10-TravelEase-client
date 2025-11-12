@@ -19,24 +19,16 @@ const Login = () => {
     const email = form.email.value;
     const password = form.password.value;
 
-    // console.log(email, password);
-    // logIn(email, password)
-    //   .then((result) => {
-    //     const user = result.user;
-    //     // console.log(user);
-    //     navigate(`${location.state ? location.state : "/"}`);
-    //   })
     logIn(email, password)
-  .then((result) => {
-    const user = result.user;
-    localStorage.setItem("userEmail", user.email); // ✅
-    navigate(location.state ? location.state : "/");
-  })
+      .then((result) => {
+        const user = result.user;
+        localStorage.setItem("userEmail", user.email);
+        navigate(location.state ? location.state : "/");
+      })
 
       .catch((error) => {
         const errorCode = error.code;
-        // const errorMessage = error.message;
-        // alert(errorCode, errorMessage);
+
         setError(errorCode);
         toast.error("Wrong email or password. Log In unsuccessful!");
       });
@@ -51,8 +43,7 @@ const Login = () => {
       })
       .catch((error) => {
         setError(error.code);
-                toast.error("Log In unsuccessful!");
-
+        toast.error("Log In unsuccessful!");
       });
   };
   return (
@@ -61,9 +52,8 @@ const Login = () => {
 
       <div className="w-11/12 mx-auto my-10">
         <div className="flex flex-col justify-items-center mx-auto gap-4 ">
-          <div className="text-center mb-5 ">
-            <h1 className="text-3xl font-bold">Login now!</h1>
-          </div>
+          <h1 className="text-center ">Login now!</h1>
+
           <div className="mx-auto w-full max-w-sm shadow-2xl bg-base-200 rounded">
             <form onSubmit={handleLogIn} className="card-body">
               <fieldset className="fieldset">
@@ -92,9 +82,9 @@ const Login = () => {
                     onClick={() => setHidePassword(!hidePassword)}
                   >
                     {hidePassword ? (
-                      <BiSolidShow size={20} className="text-base-300" />
+                      <BiSolidShow size={20} className="text-base-800" />
                     ) : (
-                      <BiSolidHide size={20} className="text-base-300" />
+                      <BiSolidHide size={20} className="text-base-800" />
                     )}{" "}
                   </span>
                 </div>
@@ -102,18 +92,18 @@ const Login = () => {
                 <div>
                   <Link
                     to="/auth/forgotpassword"
-                    className="link link-hover text-base-300 text-sm hover:underline"
+                    className="link link-hover text-sm hover:underline"
                   >
                     Forgot Password?
                   </Link>
                 </div>
                 {error && <p className="text-xs text-error">{error}</p>}
-                <button type="submit" className="btn btn-primary mt-4">
+                <button type="submit" className="btn btn-gradient mt-4">
                   Login
                 </button>
                 <p>
                   Don't Have an Account?<span> </span>
-                  <Link to="/auth/register" className="text-primary font-bold">
+                  <Link to="/auth/register" className="text-gradient font-bold">
                     Register Now!
                   </Link>
                 </p>
