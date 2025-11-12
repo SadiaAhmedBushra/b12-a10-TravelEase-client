@@ -63,19 +63,18 @@ const MyBookings = () => {
       <h1 className="text-3xl font-bold mb-6 text-primary text-center">
         My Bookings
       </h1>
-      <div className="max-w-3xl mx-auto my-5">
+      <div className="w-4/5 mx-auto my-5">
         <ul>
           <li className="grid grid-cols-3 font-semibold border-b border-gray-300 pb-2 mb-5 text-primary p-6 bg-white rounded-lg shadow-lg">
             <span>Vehicle Name</span>
             <span>Price Per Day</span>
             <span>Booked</span>
-            <p className="text-gray-500 text-sm"></p>
           </li>
 
           {bookings.map((b) => (
             <li
               key={b._id}
-              className="grid grid-cols-3 mb-5 py-3 border-b last:border-0 border-gray-200 p-6 bg-white rounded-lg shadow-lg"
+              className="grid grid-cols-3 mb-5 py-3 border-b border-gray-200 p-6 bg-white dark:bg-gray-800 rounded-lg shadow-lg dark:text-white"
             >
               <span>{b.vehicleName}</span>
               <span>{b.pricePerDay} BDT</span>

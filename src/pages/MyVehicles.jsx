@@ -95,7 +95,7 @@ const MyVehicles = () => {
         {vehicles.map((vehicle) => (
           <div
             key={vehicle._id}
-            className="bg-white rounded-xl shadow-2xl hover:scale-105 transition-transform duration-300"
+            className="bg-base-100 rounded-xl shadow-2xl hover:scale-105 transition-transform duration-300"
           >
             <img
               src={vehicle.coverImage}
@@ -104,7 +104,7 @@ const MyVehicles = () => {
             />
             <div className="p-5">
               <div className="flex flex-row justify-start gap-3 items-start">
-                <h2 className="text-2xl font-extrabold text-black">
+                <h2 className="text-2xl font-extrabold text-base-content">
                   {vehicle.vehicleName}
                 </h2>
                 <p className="bg-primary text-white text-sm font-medium px-3 py-1 rounded-full">

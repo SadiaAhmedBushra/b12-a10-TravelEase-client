@@ -23,6 +23,7 @@ const AddVehicles = () => {
       mileage: e.target.mileage.value,
       numberOfSeats: Number(e.target.numberOfSeats.value),
       ratings: Number(e.target.ratings.value),
+      yearOfManufacture: e.target.yearOfManufacture.value,
       coverImage: e.target.coverImage.value,
       userEmail: user?.email,
       createdAt: new Date(),
@@ -53,7 +54,7 @@ const AddVehicles = () => {
   return (
     <div>
       <h1 className="text-center">Add Vehicle</h1>
-      <div className="w-11/12 mx-auto p-6 bg-white rounded shadow-md mb-20">
+      <div className="w-11/12 mx-auto p-6 bg-base-100 rounded shadow-md mb-20">
         <form onSubmit={handleSubmit} className="flex flex-col justify-between">
           <div className="grid grid-cols-12 gap-5">
             <div className="col-span-12 md:col-span-6 lg:col-span-6">
@@ -73,7 +74,7 @@ const AddVehicles = () => {
                   id="vehicleName"
                   name="vehicleName"
                   required
-                  className="w-full border border-gray-300 rounded p-2"
+                  className="w-full border border-gray-300 rounded p-2  text-black dark:bg-gray-800 dark:text-white"
                 />
               </div>
 
@@ -88,7 +89,7 @@ const AddVehicles = () => {
                   id="description"
                   name="description"
                   rows="1"
-                  className="w-full border border-gray-300 rounded p-2"
+                  className="w-full border border-gray-300 rounded p-2  text-black dark:bg-gray-800 dark:text-white"
                 />
               </div>
 
@@ -105,7 +106,7 @@ const AddVehicles = () => {
                       id="category"
                       name="category"
                       required
-                      className="w-full border border-gray-300 rounded p-2"
+                      className="w-full border border-gray-300 rounded p-2  text-black dark:bg-gray-800 dark:text-white"
                     >
                       <option value="">Select Category</option>
                       <option value="Sedan">Sedan</option>
@@ -128,7 +129,7 @@ const AddVehicles = () => {
                       name="numberOfSeats"
                       min="1"
                       required
-                      className="w-full border border-gray-300 rounded p-2"
+                      className="w-full border border-gray-300 rounded p-2  text-black dark:bg-gray-800 dark:text-white"
                     />
                   </div>
                 </div>
@@ -145,7 +146,7 @@ const AddVehicles = () => {
                       id="fuelType"
                       name="fuelType"
                       required
-                      className="w-full border border-gray-300 rounded p-2"
+                      className="w-full border border-gray-300 rounded p-2  text-black dark:bg-gray-800 dark:text-white"
                     >
                       <option value="">Select Fuel Type</option>
                       <option value="Petrol">Petrol</option>
@@ -169,13 +170,29 @@ const AddVehicles = () => {
                       min="0"
                       step="0.1"
                       required
-                      className="w-full border border-gray-300 rounded p-2"
+                      className="w-full border border-gray-300 rounded p-2  text-black dark:bg-gray-800 dark:text-white"
                     />
                   </div>
                 </div>
               </div>
 
               <div className="grid grid-cols-6 gap-3">
+                <div className="col-span-3">
+                  <div>
+                    <label
+                      className="block mb-1 font-semibold"
+                      htmlFor="yearOfManufacture"
+                    >
+                      Year Of Manufacture
+                    </label>
+                    <input
+                      type="year"
+                      id="yearOfManufacture"
+                      name="yearOfManufacture"
+                      className="w-full border border-gray-300 rounded p-2  text-black dark:bg-gray-800 dark:text-white"
+                    />
+                  </div>
+                </div>
                 <div className="col-span-3">
                   <div>
                     <label
@@ -191,12 +208,12 @@ const AddVehicles = () => {
                       min="0"
                       max="5"
                       step="0.1"
-                      className="w-full border border-gray-300 rounded p-2"
+                      className="w-full border border-gray-300 rounded p-2  text-black dark:bg-gray-800 dark:text-white"
                     />
                   </div>
                 </div>
 
-                <div className="col-span-3">
+                <div className="col-span-6">
                   <div>
                     <label
                       className="block mb-1 font-semibold"
@@ -208,7 +225,7 @@ const AddVehicles = () => {
                       type="url"
                       id="coverImage"
                       name="coverImage"
-                      className="w-full border border-gray-300 rounded p-2"
+                      className="w-full border border-gray-300 rounded p-2  text-black dark:bg-gray-800 dark:text-white"
                     />
                   </div>
                 </div>
@@ -229,7 +246,7 @@ const AddVehicles = () => {
                   id="owner"
                   name="owner"
                   required
-                  className="w-full border border-gray-300 rounded p-2"
+                  className="w-full border border-gray-300 rounded p-2  text-black dark:bg-gray-800 dark:text-white"
                 />
               </div>
 
@@ -243,7 +260,7 @@ const AddVehicles = () => {
                   name="userEmail"
                   value={user?.email || "Unknown"}
                   readOnly
-                  className="w-full border border-gray-300 rounded p-2 bg-gray-100"
+                  className="w-full border border-gray-300 rounded p-2  text-black dark:bg-gray-800 dark:text-white"
                 />
               </div>
 
@@ -260,7 +277,7 @@ const AddVehicles = () => {
                   name="pricePerDay"
                   min="0"
                   required
-                  className="w-full border border-gray-300 rounded p-2"
+                  className="w-full border border-gray-300 rounded p-2  text-black dark:bg-gray-800 dark:text-white"
                 />
               </div>
 
@@ -273,7 +290,7 @@ const AddVehicles = () => {
                   id="location"
                   name="location"
                   required
-                  className="w-full border border-gray-300 rounded p-2"
+                  className="w-full border border-gray-300 rounded p-2  text-black dark:bg-gray-800 dark:text-white"
                 />
               </div>
 
@@ -287,7 +304,7 @@ const AddVehicles = () => {
                 <select
                   id="availability"
                   name="availability"
-                  className="w-full border border-gray-300 rounded p-2"
+                  className="w-full border border-gray-300 rounded p-2  text-black dark:bg-gray-800 dark:text-white"
                 >
                   <option value="Available">Available</option>
                   <option value="Booked">Booked</option>

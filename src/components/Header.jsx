@@ -6,6 +6,18 @@ import { MdLogout, MdOutlineLogin } from "react-icons/md";
 import { FaRegCircleUser } from "react-icons/fa6";
 
 const Header = () => {
+    const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
+
+  useEffect(() => {
+    const html = document.querySelector("html");
+    html.setAttribute("data-theme", theme);
+    localStorage.setItem("theme", theme);
+  }, [theme]);
+
+  const handleTheme = (checked) => {
+    setTheme(checked ? "dark" : "light");
+  };
+
   const { user, logOut } = useContext(AuthContext);
   const [dropdown, setDropdown] = useState(false);
 
@@ -39,8 +51,6 @@ const Header = () => {
    
   };
   return (
-    //  Home, All Vehicles, Add Vehicle, My Vehicles, My Bookings, Login/Register
-
     <div className="navbar w-11/12 mx-auto">
       <div className="navbar-start">
         <div className="dropdown">
@@ -69,7 +79,7 @@ const Header = () => {
               <NavLink
                 to="/"
                 className={({ isActive }) =>
-                  isActive ? "text-primary font-bold bg-base-200" : ""
+                  isActive ? "text-primary font-bold " : ""
                 }
               >
                 Home
@@ -79,7 +89,7 @@ const Header = () => {
               <NavLink
                 to="/vehicles"
                 className={({ isActive }) =>
-                  isActive ? "text-[#1A73E8] font-bold bg-base-200" : ""
+                  isActive ? "text-primary border-b-2 border-primary font-bold" : ""
                 }
               >
                 Vehicles
@@ -89,7 +99,7 @@ const Header = () => {
               <NavLink
                 to="/add-vehicles"
                 className={({ isActive }) =>
-                  isActive ? "text-[#1A73E8] font-bold bg-base-200" : ""
+                  isActive ? "text-primary border-b-2 border-primary font-bold" : ""
                 }
               >
                 Add Vehicle
@@ -99,7 +109,7 @@ const Header = () => {
               <NavLink
                 to="/my-vehicles"
                 className={({ isActive }) =>
-                  isActive ? "text-[#1A73E8] font-bold bg-base-200" : ""
+                  isActive ? "text-primary border-b-2 border-primary font-bold" : ""
                 }
               >
                 My Vehicles
@@ -109,7 +119,7 @@ const Header = () => {
               <NavLink
                 to="/my-bookings"
                 className={({ isActive }) =>
-                  isActive ? "text-[#1A73E8] font-bold bg-base-200" : ""
+                  isActive ? "text-primary border-b-2 border-primary font-bold" : ""
                 }
               >
                 My Bookings
@@ -134,7 +144,7 @@ const Header = () => {
               <NavLink
                 to="/"
                 className={({ isActive }) =>
-                  isActive ? "text-primary font-extrabold " : ""
+                  isActive ? "text-primary border-b-2 border-primary font-bold" : ""
                 }
               >
                 Home
@@ -144,7 +154,7 @@ const Header = () => {
               <NavLink
                 to="/vehicles"
                 className={({ isActive }) =>
-                  isActive ? "text-[#1A73E8] font-bold bg-base-200" : ""
+                  isActive ? "text-primary border-b-2 border-primary font-bold" : ""
                 }
               >
                 Vehicles
@@ -154,7 +164,7 @@ const Header = () => {
               <NavLink
                 to="/add-vehicles"
                 className={({ isActive }) =>
-                  isActive ? "text-[#1A73E8] font-bold bg-base-200" : ""
+                  isActive ? "text-primary border-b-2 border-primary font-bold" : ""
                 }
               >
                 Add Vehicle
@@ -164,7 +174,7 @@ const Header = () => {
               <NavLink
                 to="/my-vehicles"
                 className={({ isActive }) =>
-                  isActive ? "text-[#1A73E8] font-bold bg-base-200" : ""
+                  isActive ? "text-primary border-b-2 border-primary font-bold" : ""
                 }
               >
                 My Vehicles
@@ -174,7 +184,7 @@ const Header = () => {
               <NavLink
                 to="/my-bookings"
                 className={({ isActive }) =>
-                  isActive ? "text-[#1A73E8] font-bold bg-base-200" : ""
+                  isActive ? "text-primary border-b-2 border-primary font-bold" : ""
                 }
               >
                 My Bookings
@@ -184,12 +194,7 @@ const Header = () => {
         </div>
       </div>
       <div className="navbar-end gap-5 flex-row items-center">
-        {/* LogIN/Register Buttons */}
         <div className="flex items-center justify-center">
-          {/* <Link to="/auth/login" className="px-8 py-1 bg-primary text-white rounded-full text-lg hover:bg-[#dcdcdc] font-bold hover:text-primary transition">
-            Login
-          </Link> */}
-
           <div
             onClick={() => setDropdown(!dropdown)}
             className="cursor-pointer"
@@ -205,9 +210,14 @@ const Header = () => {
             )}
           </div>
           {user && dropdown && (
-            <div className="absolute right-0 z-10 mt-12 bg-white rounded p-3 flex flex-col gap-2 "  ref={dropdownRef}>
+            <div className="absolute right-0 z-10 mt-12 bg-base-100 rounded p-3 flex flex-col gap-2 "  ref={dropdownRef}>
               <span className="">{user.displayName}</span>{" "}
               <span className="text-xs">{user && user.email}</span>
+                   <input
+           onChange={(e)=> handleTheme(e.target.checked)}
+           type="checkbox"
+           defaultChecked={localStorage.getItem('theme') === "dark"}
+           className="toggle"/>
               <button
                 onClick={handleLogOut}
                 className="btn btn-primary flex items-center gap-2"

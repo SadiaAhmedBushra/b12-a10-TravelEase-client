@@ -6,10 +6,18 @@ import VehicleCard from "../components/VehicleCard";
 
 const Home = () => {
   const data = useLoaderData();
-  console.log("Loader data:", data);
-
   const navigate = useNavigate();
+  // const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
 
+  // useEffect(() => {
+  //   const html = document.querySelector("html");
+  //   html.setAttribute("data-theme", theme);
+  //   localStorage.setItem("theme", theme);
+  // }, [theme]);
+
+  // const handleTheme = (checked) => {
+  //   setTheme(checked ? "dark" : "light");
+  // };
   const slides = [
     { bg: "https://i.ibb.co.com/39WjHptn/sliderbg1.jpg" },
     { bg: "https://i.ibb.co.com/Lzb5psQj/sliderbg2.jpg" },

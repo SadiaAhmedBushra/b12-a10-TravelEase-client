@@ -1,31 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Gentium+Book+Plus:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 
 @import "tailwindcss";
-@plugin "daisyui"{themes: light --default;}
+
+@plugin "daisyui" {
+  themes: light --default, dark --prefersdark;
+}
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 
 @plugin "daisyui/theme" {
   name: "dark-blue";
   default: true;
-
-  /* Background */
-  /* --color-base-100: #000035; 
-  --color-base-200: #000042;  */
-
-  /* Buttons */
-  --color-primary: #1c1c84; /* button background */
-  --color-primary-focus: #000068; /* button hover/focus */
-  --color-primary-content: #ffffff; /* button text color */
-
-  /* Text */
   --color-text-primary: #FFFFFF; /* primary text */
   --color-text-secondary: #ADB5BD; /* secondary text, muted gray */
-
-  /* Other grays */
-  --color-gray: #000053; /* dark grayish blue */
-  --color-light-gray: #000068; /* lighter grayish blue */
-
-  /* Accent (optional) */
-  --color-accent: #93C572; /* you can keep or change */
 }
 
 
@@ -41,7 +27,7 @@ h1{
   /* align-content: center; */
 }
 
-.btn-gradient {
+/* .btn-gradient {
   background: linear-gradient(90deg, #1c1c84, #3b2ca8, #6a1bce);
   color: #ffffff;
   font-weight: 600;
@@ -62,6 +48,22 @@ h1{
 .btn-gradient:active {
   transform: translateY(0);
   opacity: 0.85;
+} */
+.btn-gradient {
+  background: linear-gradient(90deg, #3b2ca8, #6a1bce, #9b51e0);
+  color: #ffffff;
+  font-weight: 600;
+  padding: 10px 24px;
+  border-radius: 50px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.25s ease-in-out;
+  box-shadow: 0 4px 12px rgba(26, 26, 104, 0.4);
+}
+
+[data-theme="dark"] .btn-gradient {
+  background: linear-gradient(90deg, #1a1a6a, #3b2ca8, #5f3dc4);
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.2);
 }
 
 /* .btn-gradient {

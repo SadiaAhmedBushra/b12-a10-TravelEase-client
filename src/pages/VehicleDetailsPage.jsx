@@ -68,7 +68,7 @@ const VehicleDetailsPage = () => {
                 </div>
               </div>
               <div className="text-left my-5">
-                <p className="text-black text-md">{vehicle.description}</p>
+                <p className="text-base-content text-md">{vehicle.description}</p>
               </div>
             </div>
           </div>

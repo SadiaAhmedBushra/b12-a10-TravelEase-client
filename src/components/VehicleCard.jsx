@@ -13,7 +13,7 @@ import { Link } from "react-router";
 
 const VehicleCard = ({ vehicle }) => {
   return (
-    <div className="bg-white rounded-3xl shadow-md overflow-hidden transform hover:scale-105 hover:shadow-xl transition-transform duration-300 flex flex-col h-[480px]">
+    <div className="bg-base-100 rounded-3xl shadow-md overflow-hidden transform hover:scale-105 hover:shadow-xl transition-transform duration-300 flex flex-col h-[480px]">
       <div className="relative overflow-hidden rounded-t-3xl">
         <img
           src={vehicle.coverImage}
@@ -31,7 +31,7 @@ const VehicleCard = ({ vehicle }) => {
         </span>
       </div>
 
-      <div className="p-6 flex flex-col flex-grow justify-between">
+      <div className="p-6 flex flex-col justify-between">
         <div>
           <div className="flex flex-row text-left justify-start items-start gap-4 mb-4">
             <h2 className="text-2xl font-extrabold text-primary">

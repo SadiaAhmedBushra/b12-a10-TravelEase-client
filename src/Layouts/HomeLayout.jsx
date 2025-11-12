@@ -6,7 +6,8 @@ import { Outlet } from 'react-router';
 
 const HomeLayout = () => {
     return (
-        <div className='bg-[#F9F8F6]'>
+        // bg-[#F9F8F6]
+        <div className=''>
             <Header></Header>
             <main className=''>
                 <Outlet></Outlet>
