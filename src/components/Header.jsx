@@ -1,12 +1,11 @@
-import React, { useContext, useState, useEffect, useRef } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { FaCar } from "react-icons/fa";
 import { Link, NavLink } from "react-router";
 import { AuthContext } from "../provider/AuthProvider";
 import { MdLogout, MdOutlineLogin } from "react-icons/md";
-import { FaRegCircleUser } from "react-icons/fa6";
 
 const Header = () => {
-    const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
+  const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
 
   useEffect(() => {
     const html = document.querySelector("html");
@@ -19,39 +18,19 @@ const Header = () => {
   };
 
   const { user, logOut } = useContext(AuthContext);
-  const [dropdown, setDropdown] = useState(false);
-
-   const dropdownRef = useRef(null);
-
-    useEffect(() => {
-      const handleClickOutside = (event) => {
-        if (
-          dropdownRef.current &&
-          !dropdownRef.current.contains(event.target)
-        ) {
-          setDropdown(false);
-        }
-      };
-
-      document.addEventListener("mousedown", handleClickOutside);
-      return () => {
-        document.removeEventListener("mousedown", handleClickOutside);
-      };
-    }, []);
 
   const handleLogOut = () => {
     logOut()
       .then(() => {
-        alert("logged out successfully");
+        alert("Logged out successfully");
       })
       .catch((error) => {
         console.log(error);
       });
-
-   
   };
+
   return (
-    <div className="navbar w-11/12 mx-auto">
+    <div className="navbar w-11/12 mx-auto lg:my-2 md:my-2 my-5">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -62,13 +41,12 @@ const Header = () => {
               viewBox="0 0 24 24"
               stroke="currentColor"
             >
-              {" "}
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 strokeWidth="2"
                 d="M4 6h16M4 12h8m-8 6h16"
-              />{" "}
+              />
             </svg>
           </div>
           <ul
@@ -89,7 +67,9 @@ const Header = () => {
               <NavLink
                 to="/vehicles"
                 className={({ isActive }) =>
-                  isActive ? "text-primary border-b-2 border-primary font-bold" : ""
+                  isActive
+                    ? "text-primary border-b-2 border-primary font-bold"
+                    : ""
                 }
               >
                 Vehicles
@@ -99,7 +79,9 @@ const Header = () => {
               <NavLink
                 to="/add-vehicles"
                 className={({ isActive }) =>
-                  isActive ? "text-primary border-b-2 border-primary font-bold" : ""
+                  isActive
+                    ? "text-primary border-b-2 border-primary font-bold"
+                    : ""
                 }
               >
                 Add Vehicle
@@ -109,7 +91,9 @@ const Header = () => {
               <NavLink
                 to="/my-vehicles"
                 className={({ isActive }) =>
-                  isActive ? "text-primary border-b-2 border-primary font-bold" : ""
+                  isActive
+                    ? "text-primary border-b-2 border-primary font-bold"
+                    : ""
                 }
               >
                 My Vehicles
@@ -119,7 +103,9 @@ const Header = () => {
               <NavLink
                 to="/my-bookings"
                 className={({ isActive }) =>
-                  isActive ? "text-primary border-b-2 border-primary font-bold" : ""
+                  isActive
+                    ? "text-primary border-b-2 border-primary font-bold"
+                    : ""
                 }
               >
                 My Bookings
@@ -144,7 +130,9 @@ const Header = () => {
               <NavLink
                 to="/"
                 className={({ isActive }) =>
-                  isActive ? "text-primary border-b-2 border-primary font-bold" : ""
+                  isActive
+                    ? "text-primary border-b-2 border-primary font-bold"
+                    : ""
                 }
               >
                 Home
@@ -154,7 +142,9 @@ const Header = () => {
               <NavLink
                 to="/vehicles"
                 className={({ isActive }) =>
-                  isActive ? "text-primary border-b-2 border-primary font-bold" : ""
+                  isActive
+                    ? "text-primary border-b-2 border-primary font-bold"
+                    : ""
                 }
               >
                 Vehicles
@@ -164,7 +154,9 @@ const Header = () => {
               <NavLink
                 to="/add-vehicles"
                 className={({ isActive }) =>
-                  isActive ? "text-primary border-b-2 border-primary font-bold" : ""
+                  isActive
+                    ? "text-primary border-b-2 border-primary font-bold"
+                    : ""
                 }
               >
                 Add Vehicle
@@ -174,7 +166,9 @@ const Header = () => {
               <NavLink
                 to="/my-vehicles"
                 className={({ isActive }) =>
-                  isActive ? "text-primary border-b-2 border-primary font-bold" : ""
+                  isActive
+                    ? "text-primary border-b-2 border-primary font-bold"
+                    : ""
                 }
               >
                 My Vehicles
@@ -184,7 +178,9 @@ const Header = () => {
               <NavLink
                 to="/my-bookings"
                 className={({ isActive }) =>
-                  isActive ? "text-primary border-b-2 border-primary font-bold" : ""
+                  isActive
+                    ? "text-primary border-b-2 border-primary font-bold"
+                    : ""
                 }
               >
                 My Bookings
@@ -193,57 +189,50 @@ const Header = () => {
           </ul>
         </div>
       </div>
-      <div className="navbar-end gap-5 flex-row items-center">
-        <div className="flex items-center justify-center">
-          <div
-            onClick={() => setDropdown(!dropdown)}
-            className="cursor-pointer"
-          >
-            {user ? (
-              <img
-                src={user.photoURL}
-                alt={user.displayName}
-                className="w-8 h-8 rounded-full bg-base-100"
-              />
-            ) : (
-              ""
-            )}
-          </div>
-          {user && dropdown && (
-            <div className="absolute right-0 z-10 mt-12 bg-base-100 rounded p-3 flex flex-col gap-2 "  ref={dropdownRef}>
-              <span className="">{user.displayName}</span>{" "}
-              <span className="text-xs">{user && user.email}</span>
-                   <input
-           onChange={(e)=> handleTheme(e.target.checked)}
-           type="checkbox"
-           defaultChecked={localStorage.getItem('theme') === "dark"}
-           className="toggle"/>
-              <button
-                onClick={handleLogOut}
-                className="btn btn-primary flex items-center gap-2"
-              >
-                <MdLogout size={18} /> Log Out
-              </button>
-            </div>
-          )}
 
-          {!user && (
-            <div className="flex lg:flex-row flex-col gap-2">
-              <Link
-                to="/auth/login"
-                className="btn btn-primary btn-gradient flex items-center gap-2"
-              >
-                <MdOutlineLogin size={18} /> Log In
-              </Link>
-              <Link
-                to="/auth/register"
-                className="btn btn-base-100 flex items-center gap-2"
-              >
-                Register
-              </Link>
-            </div>
-          )}
-        </div>
+      <div className="navbar-end gap-5 flex-col-reverse md:flex-row lg:flex-row items-center">
+        {/* Theme toggle always visible */}
+        <label className="flex items-center gap-2 cursor-pointer">
+          <span className="text-sm">Dark Mode</span>
+          <input
+            type="checkbox"
+            checked={theme === "dark"}
+            onChange={(e) => handleTheme(e.target.checked)}
+            className="toggle"
+          />
+        </label>
+
+        {user ? (
+          <>
+            <img
+              src={user.photoURL}
+              alt={user.displayName}
+              className="w-8 h-8 rounded-full bg-base-100"
+              title={user.displayName}
+            />
+            <button
+              onClick={handleLogOut}
+              className="btn btn-gradient flex items-center gap-2"
+            >
+              <MdLogout size={18} /> Log Out
+            </button>
+          </>
+        ) : (
+          <div className="flex lg:flex-row flex-col gap-2">
+            <Link
+              to="/auth/login"
+              className="btn btn-primary btn-gradient flex items-center gap-2"
+            >
+              <MdOutlineLogin size={18} /> Log In
+            </Link>
+            <Link
+              to="/auth/register"
+              className="btn btn-base-100 flex items-center gap-2"
+            >
+              Register
+            </Link>
+          </div>
+        )}
       </div>
     </div>
   );
