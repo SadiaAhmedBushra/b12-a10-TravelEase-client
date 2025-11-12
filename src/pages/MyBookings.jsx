@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../provider/AuthProvider";
+import { formatDistanceToNow } from "date-fns";
 
 const MyBookings = () => {
   const { user } = useContext(AuthContext);
@@ -64,18 +65,25 @@ const MyBookings = () => {
       </h1>
       <div className="max-w-3xl mx-auto my-5">
         <ul>
-          <li className="grid grid-cols-2 font-semibold border-b border-gray-300 pb-2 mb-5 text-primary p-6 bg-white rounded-lg shadow-lg">
+          <li className="grid grid-cols-3 font-semibold border-b border-gray-300 pb-2 mb-5 text-primary p-6 bg-white rounded-lg shadow-lg">
             <span>Vehicle Name</span>
             <span>Price Per Day</span>
+            <span>Booked</span>
+            <p className="text-gray-500 text-sm"></p>
           </li>
 
           {bookings.map((b) => (
             <li
               key={b._id}
-              className="grid grid-cols-2 mb-5 py-3 border-b last:border-0 border-gray-200 p-6 bg-white rounded-lg shadow-lg"
+              className="grid grid-cols-3 mb-5 py-3 border-b last:border-0 border-gray-200 p-6 bg-white rounded-lg shadow-lg"
             >
-              <span className="truncate">{b.vehicleName}</span>
+              <span>{b.vehicleName}</span>
               <span>{b.pricePerDay} BDT</span>
+              <span>
+                {formatDistanceToNow(new Date(b.createdAt), {
+                  addSuffix: true,
+                })}
+              </span>
             </li>
           ))}
         </ul>

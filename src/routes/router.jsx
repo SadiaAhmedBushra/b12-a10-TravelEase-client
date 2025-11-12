@@ -23,12 +23,7 @@ const router = createBrowserRouter([
         path: "",
         element: <Home></Home>,
         loader:() => fetch("http://localhost:3000/latest-vehicles").then(res => res.json()),
-//         loader: async () => {
-//   const res = await fetch("http://localhost:3000/latest-vehicles");
-//   if (!res.ok) throw new Error("Failed to fetch latest vehicles");
-//   const data = await res.json();
-//   return data;
-// }
+
 
       },
       {
@@ -78,7 +73,7 @@ const router = createBrowserRouter([
           }
 
           const data = await res.json();
-          return data.result; // return only the vehicle data here
+          return data.result; 
         },
         hydrateFallbackElement: <LoadingPage></LoadingPage>,
       },
@@ -99,7 +94,7 @@ const router = createBrowserRouter([
           }
 
           const data = await res.json();
-          return data.result; // only vehicle data
+          return data.result;
         },
         hydrateFallbackElement: <LoadingPage />,
       },

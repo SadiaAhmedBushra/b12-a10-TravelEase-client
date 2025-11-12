@@ -48,8 +48,6 @@ const VehicleDetailsPage = () => {
     else toast.error("Failed to book.");
   };
 
-  if (!vehicle) return <LoadingPage></LoadingPage>;
-
   return (
     <div className="">
       <h1 className="text-center">Vehicle Details</h1>
