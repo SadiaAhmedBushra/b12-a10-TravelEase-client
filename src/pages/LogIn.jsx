@@ -20,12 +20,19 @@ const Login = () => {
     const password = form.password.value;
 
     // console.log(email, password);
+    // logIn(email, password)
+    //   .then((result) => {
+    //     const user = result.user;
+    //     // console.log(user);
+    //     navigate(`${location.state ? location.state : "/"}`);
+    //   })
     logIn(email, password)
-      .then((result) => {
-        const user = result.user;
-        // console.log(user);
-        navigate(`${location.state ? location.state : "/"}`);
-      })
+  .then((result) => {
+    const user = result.user;
+    localStorage.setItem("userEmail", user.email); // ✅
+    navigate(location.state ? location.state : "/");
+  })
+
       .catch((error) => {
         const errorCode = error.code;
         // const errorMessage = error.message;

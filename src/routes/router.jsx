@@ -12,7 +12,7 @@ import ForgotPassword from "../pages/ForgotPassword";
 import AuthLayout from "../Layouts/AuthLayout";
 import PrivateRoute from "../provider/PrivateRoute";
 import VehicleDetailsPage from "../pages/VehicleDetailsPage";
-
+import UpdateVehicleDetailsPage from "../pages/UpdateVehicleDeatilsPage";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -53,26 +53,48 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
       },
-        {
-  path: "/vehicledetails/:id",
-  element: (
-    <PrivateRoute>
-      <VehicleDetailsPage></VehicleDetailsPage>
-    </PrivateRoute>
-  ),
-  loader: async ({ params }) => {
-    const res = await fetch(`http://localhost:3000/vehicles/${params.id}`);
+      {
+        path: "/vehicledetails/:id",
+        element: (
+          <PrivateRoute>
+            <VehicleDetailsPage></VehicleDetailsPage>
+          </PrivateRoute>
+        ),
+        loader: async ({ params }) => {
+          const res = await fetch(
+            `http://localhost:3000/vehicles/${params.id}`
+          );
 
-    if (!res.ok) {
-      throw new Response("Not Found", { status: 404 });
-    }
+          if (!res.ok) {
+            throw new Response("Not Found", { status: 404 });
+          }
 
-    const data = await res.json();
-    return data.result; // return only the vehicle data here
-  },
-  hydrateFallbackElement: <LoadingPage></LoadingPage>,
-}
+          const data = await res.json();
+          return data.result; // return only the vehicle data here
+        },
+        hydrateFallbackElement: <LoadingPage></LoadingPage>,
+      },
+      {
+        path: "/update-vehicle/:id",
+        element: (
+          <PrivateRoute>
+            <UpdateVehicleDetailsPage />
+          </PrivateRoute>
+        ),
+        loader: async ({ params }) => {
+          const res = await fetch(
+            `http://localhost:3000/vehicles/${params.id}`
+          );
 
+          if (!res.ok) {
+            throw new Response("Not Found", { status: 404 });
+          }
+
+          const data = await res.json();
+          return data.result; // only vehicle data
+        },
+        hydrateFallbackElement: <LoadingPage />,
+      },
     ],
   },
 

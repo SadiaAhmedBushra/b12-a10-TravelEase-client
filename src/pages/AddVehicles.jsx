@@ -1,8 +1,12 @@
 import React, { useContext } from "react";
 import { AuthContext } from "../provider/AuthProvider";
+import { useNavigate } from "react-router";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const AddVehicles = () => {
   const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -11,16 +15,17 @@ const AddVehicles = () => {
       vehicleName: e.target.vehicleName.value,
       owner: e.target.owner.value,
       category: e.target.category.value,
-      pricePerDay: e.target.pricePerDay.value,
+      pricePerDay: Number(e.target.pricePerDay.value),
       location: e.target.location.value,
       availability: e.target.availability.value,
       description: e.target.description.value,
       fuelType: e.target.fuelType.value,
       mileage: e.target.mileage.value,
-      numberOfSeats: e.target.numberOfSeats.value,
-      ratings: e.target.ratings.value,
+      numberOfSeats: Number(e.target.numberOfSeats.value),
+      ratings: Number(e.target.ratings.value),
       coverImage: e.target.coverImage.value,
-      userEmail: user?.email || "Unknown",
+      userEmail: user?.email,
+      createdAt: new Date(),
     };
 
     fetch("http://localhost:3000/vehicles", {
@@ -28,15 +33,20 @@ const AddVehicles = () => {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(formData),
     })
-      .then((response) => response.json())
+      .then((res) => res.json())
       .then((data) => {
-        console.log("Success:", data);
-        alert("Vehicle details submitted successfully!");
+        toast.success("Vehicle added successfully!");
+        console.log(data);
+
         e.target.reset();
+
+        setTimeout(() => {
+          navigate("/my-vehicles");
+        }, 1500);
       })
-      .catch((error) => {
-        console.error("Error Message:", error);
-        alert("An unexpected error occurred while submitting vehicle details.");
+      .catch((err) => {
+        toast.error("Unexpected Error Occurred!");
+        console.error(err);
       });
   };
 
@@ -46,9 +56,11 @@ const AddVehicles = () => {
       <div className="w-11/12 mx-auto p-6 bg-white rounded shadow-md mb-20">
         <form onSubmit={handleSubmit} className="flex flex-col justify-between">
           <div className="grid grid-cols-12 gap-5">
-            <div className="col-span-6">
-              <h2 className="text-2xl text-primary font-bold mb-4">Add Vehicle Information</h2>
-              {/* Vehicle Name */}
+            <div className="col-span-12 md:col-span-6 lg:col-span-6">
+              <h2 className="text-2xl text-primary font-bold mb-4">
+                Add Vehicle Information
+              </h2>
+
               <div>
                 <label
                   className="block mb-1 font-semibold"
@@ -65,7 +77,6 @@ const AddVehicles = () => {
                 />
               </div>
 
-              {/* Description */}
               <div>
                 <label
                   className="block mb-1 font-semibold"
@@ -78,12 +89,11 @@ const AddVehicles = () => {
                   name="description"
                   rows="1"
                   className="w-full border border-gray-300 rounded p-2"
-                ></textarea>
+                />
               </div>
 
-              <div className=" grid grid-cols-6 gap-3">
-                <div className="col-span-3">
-                  {/* Category */}
+              <div className="grid grid-cols-6 gap-3">
+                <div className="col-span-6 md:col-span-3 lg:col-span-3">
                   <div>
                     <label
                       className="block mb-1 font-semibold"
@@ -105,7 +115,6 @@ const AddVehicles = () => {
                     </select>
                   </div>
 
-                  {/* Number of Seats */}
                   <div>
                     <label
                       className="block mb-1 font-semibold"
@@ -123,8 +132,8 @@ const AddVehicles = () => {
                     />
                   </div>
                 </div>
-                <div className="col-span-3">
-                  {/* Fuel Type */}
+
+                <div className="col-span-6 md:col-span-3 lg:col-span-3">
                   <div>
                     <label
                       className="block mb-1 font-semibold"
@@ -146,7 +155,6 @@ const AddVehicles = () => {
                     </select>
                   </div>
 
-                  {/* Mileage */}
                   <div>
                     <label
                       className="block mb-1 font-semibold"
@@ -167,10 +175,8 @@ const AddVehicles = () => {
                 </div>
               </div>
 
-              <div className=" grid grid-cols-6 gap-3">
+              <div className="grid grid-cols-6 gap-3">
                 <div className="col-span-3">
-                  {" "}
-                  {/* Ratings */}
                   <div>
                     <label
                       className="block mb-1 font-semibold"
@@ -189,9 +195,8 @@ const AddVehicles = () => {
                     />
                   </div>
                 </div>
+
                 <div className="col-span-3">
-                  {" "}
-                  {/* Cover Image URL */}
                   <div>
                     <label
                       className="block mb-1 font-semibold"
@@ -209,11 +214,12 @@ const AddVehicles = () => {
                 </div>
               </div>
             </div>
-            <div className="col-span-6">
+
+            <div className="col-span-12 md:col-span-6 lg:col-span-6">
               <h2 className="text-2xl text-primary font-bold mb-4">
                 Add Owner and Rental Information
               </h2>
-              {/* Owner */}
+
               <div>
                 <label className="block mb-1 font-semibold" htmlFor="owner">
                   Owner
@@ -227,7 +233,6 @@ const AddVehicles = () => {
                 />
               </div>
 
-              {/* User Email (Read Only) */}
               <div>
                 <label className="block mb-1 font-semibold" htmlFor="userEmail">
                   Owner Email
@@ -242,7 +247,6 @@ const AddVehicles = () => {
                 />
               </div>
 
-              {/* Price Per Day */}
               <div>
                 <label
                   className="block mb-1 font-semibold"
@@ -260,7 +264,6 @@ const AddVehicles = () => {
                 />
               </div>
 
-              {/* Location */}
               <div>
                 <label className="block mb-1 font-semibold" htmlFor="location">
                   Location
@@ -274,7 +277,6 @@ const AddVehicles = () => {
                 />
               </div>
 
-              {/* Availability */}
               <div>
                 <label
                   className="block mb-1 font-semibold"
@@ -294,17 +296,15 @@ const AddVehicles = () => {
             </div>
           </div>
 
-          {/* Submit Button */}
           <div className="w-full flex justify-center mt-6">
-            <button
-              type="submit"
-              className="px-8 py-3 bg-[#1c1c84] text-white rounded-full text-lg hover:bg-[#dcdcdc] font-bold hover:text-primary transition"
-            >
+            <button type="submit" className=" btn-gradient">
               Add Vehicle
             </button>
           </div>
         </form>
       </div>
+
+      <ToastContainer position="top-right" autoClose={3000} />
     </div>
   );
 };
