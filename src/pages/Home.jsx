@@ -10,38 +10,6 @@ const Home = () => {
   const data = useLoaderData();
   const navigate = useNavigate();
 
-  const greenExperts = [
-  {
-    expertId: 1,
-    expertName: "Sue Biggs",
-    expertSpecialization: "Ornamental Horticulture",
-    expertImage:
-      "https://i.ibb.co.com/prdRnqvn/Press-PDB-7-3-18-1112-2a20b4b-scaled.webp",
-  },
-  {
-    expertId: 2,
-    expertName: "Tim Richardson",
-    expertSpecialization: "Garden Expert",
-    expertImage: "https://i.ibb.co.com/3Xym4zF/Tim-Richardson-2-efc432c.webp",
-  },
-  {
-    expertId: 3,
-    expertName: "Alys Fowler",
-    expertSpecialization: "Horticulture",
-    expertImage: "https://i.ibb.co.com/3yrrvNsP/Alys-Fowler-new-3cbfec7.webp",
-  },
-];
-  // const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
-
-  // useEffect(() => {
-  //   const html = document.querySelector("html");
-  //   html.setAttribute("data-theme", theme);
-  //   localStorage.setItem("theme", theme);
-  // }, [theme]);
-
-  // const handleTheme = (checked) => {
-  //   setTheme(checked ? "dark" : "light");
-  // };
   const slides = [
     { bg: "https://i.ibb.co.com/39WjHptn/sliderbg1.jpg" },
     { bg: "https://i.ibb.co.com/Lzb5psQj/sliderbg2.jpg" },
