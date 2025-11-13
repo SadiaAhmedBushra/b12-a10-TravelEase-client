@@ -16,16 +16,10 @@ const Register = () => {
   const [hidePassword, setHidePassword] = useState(true);
 
   const handleGoogleSignIn = () => {
-    // googleSignIn()
-    //   .then((result) => {
-    //     const user = result.user;
-    //     setUser(user);
-    //     navigate(location.state ? location.state : "/");
-    //   })
     googleSignIn()
   .then((result) => {
     const user = result.user;
-    localStorage.setItem("userEmail", user.email); // ✅
+    localStorage.setItem("userEmail", user.email); 
     setUser(user);
     navigate(location.state ? location.state : "/");
   })

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import useVehicles from "../Hooks/useVehicles";
 import VehicleCard from "../components/VehicleCard";
 import LoadingPage from "./LoadingPage";
+import ErrorPage from "./ErrorPage";
 
 const AllVehicles = () => {
   const { vehicles, loading, error } = useVehicles();
@@ -21,9 +22,9 @@ const AllVehicles = () => {
     return <LoadingPage></LoadingPage>;
   }
 
-  // if (error) {
-  //   return <ErrorPage></ErrorPage>;
-  // }
+  if (error) {
+    return <ErrorPage></ErrorPage>;
+  }
 
   return (
     <div className="">

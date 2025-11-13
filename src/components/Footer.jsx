@@ -51,9 +51,9 @@ const Footer = () => {
             </p>
             <nav>
               <div className="flex flex-row gap-4 mt-5 text-xl">
-                <FaXTwitter />
-                <IoLogoYoutube />
-                <FaFacebookF />
+              <a  href="">  <FaXTwitter /></a>
+               <a  href=""> <IoLogoYoutube /></a>
+              <a  href="">  <FaFacebookF /></a>
               </div>
             </nav>
           </div>

@@ -6,6 +6,8 @@ import { FaCircleInfo } from "react-icons/fa6";
 import { IoSettings } from "react-icons/io5";
 import { MdOutlineDescription } from "react-icons/md";
 import { FaBangladeshiTakaSign } from "react-icons/fa6";
+import ErrorPage from "./ErrorPage";
+import LoadingPage from "./LoadingPage";
 
 const UpdateVehicleDetailsPage = () => {
   const { id: vehicleId } = useParams();
@@ -36,7 +38,7 @@ const UpdateVehicleDetailsPage = () => {
 
     const fetchVehicle = async () => {
       try {
-        const res = await fetch(`http://localhost:3000/vehicles/${vehicleId}`);
+        const res = await fetch(`https://travelease-server-alpha.vercel.app/vehicles/${vehicleId}`);
         if (!res.ok) throw new Error("Failed to fetch vehicle data");
         const data = await res.json();
         const fetchedVehicle = data.result;
@@ -44,6 +46,7 @@ const UpdateVehicleDetailsPage = () => {
         setDescChars(fetchedVehicle.description?.length || 0);
       } catch (error) {
         toast.error("Failed to load vehicle data");
+        <ErrorPage></ErrorPage>;
       } finally {
         setLoading(false);
       }
@@ -73,7 +76,7 @@ const UpdateVehicleDetailsPage = () => {
     try {
       const { _id, ...vehicleData } = vehicle;
 
-      const res = await fetch(`http://localhost:3000/vehicles/${vehicleId}`, {
+      const res = await fetch(`https://travelease-server-alpha.vercel.app/vehicles/${vehicleId}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(vehicleData),
@@ -94,9 +97,7 @@ const UpdateVehicleDetailsPage = () => {
 
   if (loading)
     return (
-      <div className="flex justify-center items-center h-screen font-semibold text-xl">
-        Loading vehicle data...
-      </div>
+      <LoadingPage></LoadingPage>
     );
 
   if (redirecttoVDP) {

@@ -1,6 +1,8 @@
 import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../provider/AuthProvider";
 import { formatDistanceToNow } from "date-fns";
+import ErrorPage from "./ErrorPage";
+import LoadingPage from "./LoadingPage";
 
 const MyBookings = () => {
   const { user } = useContext(AuthContext);
@@ -21,7 +23,7 @@ const MyBookings = () => {
       try {
         setError(null);
         const res = await fetch(
-          `http://localhost:3000/bookings?userEmail=${encodeURIComponent(
+          `https://travelease-server-alpha.vercel.app/bookings?userEmail=${encodeURIComponent(
             userEmail
           )}`
         );
@@ -40,16 +42,8 @@ const MyBookings = () => {
     fetchBookings();
   }, [userEmail]);
 
-  if (loading)
-    return (
-      <p className="text-center mt-10 text-lg font-semibold">Loading...</p>
-    );
-  if (error)
-    return (
-      <p className="text-center mt-10 text-red-600 font-semibold">
-        Error: {error}
-      </p>
-    );
+  if (loading) return <LoadingPage></LoadingPage>;
+  if (error) return <ErrorPage></ErrorPage>;
 
   if (!bookings.length)
     return (
@@ -60,7 +54,7 @@ const MyBookings = () => {
 
   return (
     <div>
-      <h1 className="text-3xl font-bold mb-6 text-primary text-center">
+      <h1 className="text-center">
         My Bookings
       </h1>
       <div className="w-4/5 mx-auto my-5">

@@ -1,5 +1,4 @@
 import { motion, AnimatePresence } from "framer-motion";
-import { use, useEffect, useState } from "react";
 import { useLoaderData, useNavigate } from "react-router";
 import AllVehicles from "../pages/AllVehicles";
 import VehicleCard from "../components/VehicleCard";
@@ -22,19 +21,19 @@ const Home = () => {
         <div className="absolute inset-0 flex justify-start items-center px-10 md:px-20">
           <div className="flex flex-col gap-3">
             <h2 className="text-white text-4xl md:text-6xl font-bold z-10 max-w-xl">
-            Drive Your Journey with TravelEase{" "}
-          </h2>
-          <p className="w-1/2 text-lg text-white">
-            Whether it’s a weekend getaway or a business trip, TravelEase gets
-            you on the road quickly with top-quality cars and hassle-free
-            booking. Your adventure starts here!
-          </p>
-               <button
-                onClick={() => navigate("/vehicles")}
-                className="w-1/2 lg:w-1/5 btn-gradient"
-              >
-                All Vehicles
-              </button>
+              Drive Your Journey with TravelEase{" "}
+            </h2>
+            <p className="w-1/2 text-lg text-white">
+              Whether it’s a weekend getaway or a business trip, TravelEase gets
+              you on the road quickly with top-quality cars and hassle-free
+              booking. Your adventure starts here!
+            </p>
+            <button
+              onClick={() => navigate("/vehicles")}
+              className="w-1/2 lg:w-1/5 btn-gradient"
+            >
+              All Vehicles
+            </button>
           </div>
         </div>
       </div>

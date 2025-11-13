@@ -37,7 +37,7 @@ const VehicleDetailsPage = () => {
       createdAt: new Date(),
     };
 
-    const res = await fetch("http://localhost:3000/bookings", {
+    const res = await fetch("https://travelease-server-alpha.vercel.app/bookings", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(bookingData),
@@ -45,7 +45,7 @@ const VehicleDetailsPage = () => {
 
     const data = await res.json();
     if (data.success) toast.success("Vehicle deleted successfully");
-    else toast.error("Failed to book.");
+    else toast.error("Failed to book this vehicle.");
   };
 
   return (

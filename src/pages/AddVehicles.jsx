@@ -3,6 +3,7 @@ import { AuthContext } from "../provider/AuthProvider";
 import { useNavigate } from "react-router";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import ErrorPage from "./ErrorPage";
 
 const AddVehicles = () => {
   const { user } = useContext(AuthContext);
@@ -29,7 +30,7 @@ const AddVehicles = () => {
       createdAt: new Date(),
     };
 
-    fetch("http://localhost:3000/vehicles", {
+    fetch("https://travelease-server-alpha.vercel.app//vehicles", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(formData),

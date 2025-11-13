@@ -100,9 +100,7 @@ const CustomerReviews = () => {
                 </motion.div>
 
                 <motion.h2
-                  className="text-lg font-semibold mt-4 text-primary"
-                  whileHover={{ color: "#256D1B" }}
-                >
+                  className="text-lg font-semibold mt-4 text-primary"                >
                   {customer.customerName}
                 </motion.h2>
 

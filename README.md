@@ -4,7 +4,7 @@ Welcome to **TravelEase**, your ultimate platform for easy and reliable vehicle 
 
 ## Live Site
 
-Check out the live site here: 
+Check out the live site here: https://travelease-client.netlify.app/ 
 
 ## Features
 

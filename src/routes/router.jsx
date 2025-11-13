@@ -23,7 +23,7 @@ const router = createBrowserRouter([
       {
         path: "",
         element: <Home></Home>,
-        loader:() => fetch("http://localhost:3000/latest-vehicles").then(res => res.json()),
+        loader:() => fetch("https://travelease-server-alpha.vercel.app/latest-vehicles").then(res => res.json()),
       },
       {
         path: "/vehicles",
@@ -64,7 +64,7 @@ const router = createBrowserRouter([
         ),
         loader: async ({ params }) => {
           const res = await fetch(
-            `http://localhost:3000/vehicles/${params.id}`
+            `https://travelease-server-alpha.vercel.app/vehicles/${params.id}`
           );
 
           if (!res.ok) {
@@ -85,7 +85,7 @@ const router = createBrowserRouter([
         ),
         loader: async ({ params }) => {
           const res = await fetch(
-            `http://localhost:3000/vehicles/${params.id}`
+            `https://travelease-server-alpha.vercel.app/vehicles/${params.id}`
           );
 
           if (!res.ok) {

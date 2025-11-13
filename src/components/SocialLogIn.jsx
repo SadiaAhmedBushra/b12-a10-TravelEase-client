@@ -10,7 +10,7 @@ const SocialLogIn = ({ handleGoogleSignIn }) => {
         <button
           onClick={handleGoogleSignIn}
           type="button"
-          className="btn btn-gradient w-1/2 bg-base-200 flex items-center justify-center gap-2"
+          className="btn btn-gradient bg-base-200 flex items-center justify-center gap-2"
         >
           <FaGoogle /> Log In with Google
         </button>

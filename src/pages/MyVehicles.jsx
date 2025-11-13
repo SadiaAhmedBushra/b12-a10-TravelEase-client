@@ -8,6 +8,7 @@ import { FaBangladeshiTakaSign, FaRegStar } from "react-icons/fa6";
 import { FiEdit } from "react-icons/fi";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import Swal from "sweetalert2";
+import ErrorPage from "./ErrorPage";
 
 const MyVehicles = () => {
   const [vehicles, setVehicles] = useState([]);
@@ -26,7 +27,7 @@ const MyVehicles = () => {
     const fetchVehicles = async () => {
       try {
         const res = await fetch(
-          `http://localhost:3000/vehicles?userEmail=${encodeURIComponent(
+          `https://travelease-server-alpha.vercel.app/vehicles?userEmail=${encodeURIComponent(
             loggedInUserEmail
           )}`
         );
@@ -34,6 +35,7 @@ const MyVehicles = () => {
         setVehicles(data);
       } catch (err) {
         toast.error("Unexpected Error while fetching vehicles.");
+        <ErrorPage></ErrorPage>;
       } finally {
         setLoading(false);
       }
@@ -52,7 +54,7 @@ const MyVehicles = () => {
       confirmButtonText: "Delete",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:3000/vehicles/${vehicleId}`, {
+        fetch(`https://travelease-server-alpha.vercel.app/vehicles/${vehicleId}`, {
           method: "DELETE",
           headers: {
             "Content-Type": "application/json",
@@ -61,7 +63,8 @@ const MyVehicles = () => {
           .then((res) => res.json())
           .then(() => {
             setVehicles((prevVehicles) =>
-            prevVehicles.filter((v) => v._id !== vehicleId));
+              prevVehicles.filter((v) => v._id !== vehicleId)
+            );
 
             Swal.fire({
               title: "Deleted!",
@@ -70,6 +73,7 @@ const MyVehicles = () => {
             });
           })
           .catch((err) => {
+            <ErrorPage></ErrorPage>;
             console.log(err);
           });
       }
@@ -89,7 +93,7 @@ const MyVehicles = () => {
 
   return (
     <div className="p-6 w-11/12 mx-auto">
-      <h1 className="text-center text-primary">My Vehicles</h1>
+      <h1 className="text-center">My Vehicles</h1>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {vehicles.map((vehicle) => (

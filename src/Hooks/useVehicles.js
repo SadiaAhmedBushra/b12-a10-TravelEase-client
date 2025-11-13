@@ -9,7 +9,7 @@ const useVehicles = () => {
   useEffect(() => {
     setLoading(true);
 
-    axios('http://localhost:3000/vehicles')   
+    axios('https://travelease-server-alpha.vercel.app/vehicles')   
       .then((data) => setVehicles(data.data))
       .catch((err) => setError(err))
       .finally(() => {

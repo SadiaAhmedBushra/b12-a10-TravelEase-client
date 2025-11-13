@@ -26,7 +26,6 @@ const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  // ✅ Updated createUser to async with try/catch and setLoading handling
   const createUser = async (email, password) => {
     setLoading(true);
     try {
@@ -39,7 +38,6 @@ const AuthProvider = ({ children }) => {
     }
   };
 
-  // ✅ Updated logIn to async with try/catch and setLoading handling
   const logIn = async (email, password) => {
     setLoading(true);
     try {
@@ -66,7 +64,6 @@ const AuthProvider = ({ children }) => {
     };
   }, []);
 
-  // ✅ Updated updateUser to reject if no user is logged in
   const updateUser = (updatedData) => {
     if (!auth.currentUser) return Promise.reject(new Error("No authenticated user"));
     return updateProfile(auth.currentUser, updatedData).then(() => {
@@ -74,7 +71,6 @@ const AuthProvider = ({ children }) => {
     });
   };
 
-  // ✅ Uncommented toast in forgotPassword and added error toast
   const forgotPassword = (email) => {
     setLoading(true);
     return sendPasswordResetEmail(auth, email)
