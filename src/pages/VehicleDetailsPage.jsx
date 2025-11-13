@@ -44,7 +44,7 @@ const VehicleDetailsPage = () => {
     });
 
     const data = await res.json();
-    if (data.success) toast.success("Vehicle deleted successfully");
+    if (data.success) toast.success("Vehicle booked successfully");
     else toast.error("Failed to book this vehicle.");
   };
 

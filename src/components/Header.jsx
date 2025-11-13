@@ -111,17 +111,6 @@ const Header = () => {
                 My Bookings
               </NavLink>
             </li>
-            <li className="mt-2 flex items-center justify-center">
-              <label className="flex items-center gap-2 cursor-pointer">
-                <span className="text-sm">Dark Mode</span>
-                <input
-                  type="checkbox"
-                  checked={theme === "dark"}
-                  onChange={(e) => handleTheme(e.target.checked)}
-                  className="toggle"
-                />
-              </label>
-            </li>
           </ul>
         </div>
 

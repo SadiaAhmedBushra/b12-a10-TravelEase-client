@@ -76,7 +76,7 @@ const Footer = () => {
           </nav>
         </div>
 
-        <div className="flex justify-between items-center gap-3 w-1/2 text-sm">
+        <div className="flex justify-between items-center gap-3">
           <p className="link link-hover">Privacy Policy</p>
           <p className="link link-hover">Cookies Policy</p>
           <p className="link link-hover">Terms and Conditions</p>
