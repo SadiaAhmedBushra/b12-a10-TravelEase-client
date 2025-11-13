@@ -30,7 +30,7 @@ const AddVehicles = () => {
       createdAt: new Date(),
     };
 
-    fetch("https://travelease-server-alpha.vercel.app//vehicles", {
+    fetch("https://travelease-server-alpha.vercel.app/vehicles", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(formData),
