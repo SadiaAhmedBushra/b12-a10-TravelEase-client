@@ -13,6 +13,7 @@ import AuthLayout from "../Layouts/AuthLayout";
 import PrivateRoute from "../provider/PrivateRoute";
 import VehicleDetailsPage from "../pages/VehicleDetailsPage";
 import UpdateVehicleDetailsPage from "../pages/UpdateVehicleDeatilsPage";
+import ErrorPage from "../pages/ErrorPage";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -23,8 +24,6 @@ const router = createBrowserRouter([
         path: "",
         element: <Home></Home>,
         loader:() => fetch("http://localhost:3000/latest-vehicles").then(res => res.json()),
-
-
       },
       {
         path: "/vehicles",
@@ -119,29 +118,11 @@ const router = createBrowserRouter([
       },
     ],
   },
-  // {
-  //   path: "/vehicledetails/:vehicleId",
-  //   element: (
-  //     <PrivateRoute>
-  //       <VehicleDetails></VehicleDetails>
-  //     </PrivateRoute>
-  //   ),
-  //   loader: () => fetch("/vehicle.json"),
-  //   hydrateFallbackElement: <LoadingPage></LoadingPage>,
-  // },
-  // {
-  //   path: "/profile",
-  //   element: (
-  //     <PrivateRoute>
-  //       <MyProfile />
-  //     </PrivateRoute>
-  //   ),
-  // },
 
-  // {
-  //   path: "/*",
-  //   element: <ErrorPage></ErrorPage>,
-  // },
+  {
+    path: "/*",
+    element: <ErrorPage></ErrorPage>,
+  },
 ]);
 
 export default router;
