@@ -17,12 +17,12 @@
   font-family: "Gentium Book Plus", serif;
 }
 
-h1{
+/* h1{
   font-size: 32px;
   font-weight: bolder;
   margin-top: 50px;
   margin-bottom: 50px;
-}
+} */
 
 
 .btn-gradient {
@@ -56,3 +56,140 @@ h1{
   -webkit-text-fill-color: transparent;
 }
 
+/* ✅ Ultra-light glass navbar (modern & premium) */
+.navbar-glass {
+  background: linear-gradient(
+    90deg,
+    rgba(28, 28, 132, 0.06),
+    rgba(59, 44, 168, 0.04),
+    rgba(106, 27, 206, 0.06)
+  );
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+/* ✅ Dark mode — still subtle, not heavy */
+[data-theme="dark"] .navbar-glass {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.04),
+    rgba(255, 255, 255, 0.03),
+    rgba(255, 255, 255, 0.04)
+  );
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+@keyframes slideDownFade {
+  0% {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideUpFade {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideLeftFade {
+  0% {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideRightFade {
+  0% {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.animate-slideDownFade {
+  animation: slideDownFade 1s ease forwards;
+}
+
+.animate-slideUpFade {
+  animation: slideUpFade 1s ease forwards;
+}
+
+.animate-slideLeftFade {
+  animation: slideLeftFade 1s ease forwards;
+}
+
+.animate-slideRightFade {
+  animation: slideRightFade 1s ease forwards;
+}
+
+.btn-gradient:hover {
+  background: linear-gradient(90deg, #3b82f6, #4f46e5);
+}
+
+.text-primary {
+  color: #4f46e5; 
+}
+
+
+/* Base styles for all headings */
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Gentium Book Plus", serif;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+  padding: 0;
+  font-weight: 700;
+  color: #4f46e5; /* matches your .text-primary color */
+}
+
+/* Sizes consistent with typical heading hierarchy */
+h1 {
+  font-size: 2rem; /* 32px */
+}
+
+h2 {
+  font-size: 1.75rem; /* 28px */
+}
+
+h3 {
+  font-size: 1.5rem; /* 24px */
+}
+
+h4 {
+  font-size: 1.25rem; /* 20px */
+}
+
+h5 {
+  font-size: 1rem; /* 16px */
+}
+
+h6 {
+  font-size: 0.875rem; /* 14px */
+}
+
+/* Dark theme heading color override */
+[data-theme="dark"] h1,
+[data-theme="dark"] h2,
+[data-theme="dark"] h3,
+[data-theme="dark"] h4,
+[data-theme="dark"] h5,
+[data-theme="dark"] h6 {
+  color: #a5b4fc; /* lighter pastel blue for dark mode */
+}

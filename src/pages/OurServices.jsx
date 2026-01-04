@@ -31,7 +31,7 @@ const OurServices = () => {
     },
     {
       serviceId: 3,
-      serviceName: "Flexible Payment & Cancellation",
+      serviceName: "Flexible Cancellation",
       serviceIcon: (
         <RiSecurePaymentFill className="text-6xl text-gradient mx-auto" />
       ),
@@ -94,7 +94,7 @@ const OurServices = () => {
               <motion.div
                 variants={slideVariants}
                 whileHover={{ scale: 1.05 }}
-                className="relative bg-[#F0F8FF] rounded-2xl shadow-xl pt-10 pb-6 px-6 mx-3 mt-12 text-center"
+                className="relative bg-[#F0F8FF] dark:bg-gray-900 rounded-2xl shadow-xl pt-10 pb-6 px-6 mx-3 mt-12 text-center"
               >
                 <motion.div
                   className="absolute -left-6 -top-6 p-3 rounded-full text-primary"
@@ -109,7 +109,7 @@ const OurServices = () => {
                 </motion.h2>
 
                 <motion.p
-                  className="text-gray-600 mt-3 text-sm leading-relaxed"
+                  className="mt-3 text-sm leading-relaxed"
                   initial={{ opacity: 0 }}
                   whileInView={{ opacity: 1 }}
                   transition={{ duration: 0.8, delay: 0.3 }}

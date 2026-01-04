@@ -158,7 +158,7 @@ const VehicleDetailsPage = () => {
                 <div className="mt-6 flex flex-col gap-3">
                   <button
                     onClick={handleBooking}
-                    className="w-full py-3 rounded-full text-white font-bold bg-gradient-to-r from-[#1c1c84] via-[#3b2ca8] to-[#6a1bce] shadow-lg hover:opacity-90 transition"
+                    className="w-full py-3 rounded-full text-white font-bold btn-gradient shadow-lg hover:opacity-90 transition"
                   >
                     Book Now
                   </button>

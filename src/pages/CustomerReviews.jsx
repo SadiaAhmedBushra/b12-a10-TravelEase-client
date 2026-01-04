@@ -85,7 +85,7 @@ const CustomerReviews = () => {
               <motion.div
                 variants={slideVariants}
                 whileHover={{ scale: 1.05 }}
-                className="relative bg-[#F0F8FF] rounded-2xl pt-16 pb-4 px-6 mx-3 mt-12 text-center flex flex-col items-center"
+                className="relative bg-[#F0F8FF] dark:bg-gray-900 rounded-2xl pt-16 pb-4 px-6 mx-3 mt-12 text-center flex flex-col items-center"
               >
                 <motion.div
                   className="absolute -top-12"
@@ -105,7 +105,7 @@ const CustomerReviews = () => {
                 </motion.h2>
 
                 <motion.p
-                  className="text-gray-600 mt-3 text-sm leading-relaxed"
+                  className=" mt-y text-sm leading-relaxed"
                   initial={{ opacity: 0 }}
                   whileInView={{ opacity: 1 }}
                   transition={{ duration: 0.8, delay: 0.3 }}

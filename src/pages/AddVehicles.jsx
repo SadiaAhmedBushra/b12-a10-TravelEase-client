@@ -1,16 +1,21 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { AuthContext } from "../provider/AuthProvider";
 import { useNavigate } from "react-router";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import ErrorPage from "./ErrorPage";
 
+
 const AddVehicles = () => {
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setIsSubmitting(true);
+
 
     const formData = {
       vehicleName: e.target.vehicleName.value,
@@ -38,18 +43,24 @@ const AddVehicles = () => {
       .then((res) => res.json())
       .then((data) => {
         toast.success("Vehicle added successfully!");
-        console.log(data);
-
+        setIsSubmitting(false);
         e.target.reset();
 
         setTimeout(() => {
-          navigate("/my-vehicles");
+          navigate("/dashboard/my-vehicles");
         }, 1500);
       })
       .catch((err) => {
+        setIsSubmitting(false);
         toast.error("Unexpected Error Occurred!");
         console.error(err);
       });
+
+      if (!formData.category || !formData.fuelType || !formData.availability) {
+  toast.error("Please fill in all required fields.");
+  return;
+}
+
   };
 
   return (
@@ -106,10 +117,11 @@ const AddVehicles = () => {
                     <select
                       id="category"
                       name="category"
+                      defaultValue=""
                       required
                       className="w-full border border-gray-300 rounded p-2  text-black dark:bg-gray-800 dark:text-white"
                     >
-                      <option value="">Select Category</option>
+                      <option value="" disabled hidden></option>
                       <option value="Sedan">Sedan</option>
                       <option value="SUV">SUV</option>
                       <option value="Electric">Electric</option>
@@ -146,10 +158,11 @@ const AddVehicles = () => {
                     <select
                       id="fuelType"
                       name="fuelType"
+                      defaultValue=""
                       required
                       className="w-full border border-gray-300 rounded p-2  text-black dark:bg-gray-800 dark:text-white"
                     >
-                      <option value="">Select Fuel Type</option>
+                      <option value="" disabled hidden></option>
                       <option value="Petrol">Petrol</option>
                       <option value="Diesel">Diesel</option>
                       <option value="Electric">Electric</option>
@@ -305,8 +318,10 @@ const AddVehicles = () => {
                 <select
                   id="availability"
                   name="availability"
+                  defaultValue=""
                   className="w-full border border-gray-300 rounded p-2  text-black dark:bg-gray-800 dark:text-white"
                 >
+                  <option value="" disabled hidden></option>
                   <option value="Available">Available</option>
                   <option value="Booked">Booked</option>
                 </select>
@@ -315,8 +330,8 @@ const AddVehicles = () => {
           </div>
 
           <div className="w-full flex justify-center mt-6">
-            <button type="submit" className=" btn-gradient">
-              Add Vehicle
+            <button type="submit" disabled={isSubmitting} className=" btn-gradient">
+              {isSubmitting ? "Adding..." : "Add Vehicle"}
             </button>
           </div>
         </form>

@@ -14,6 +14,13 @@ import PrivateRoute from "../provider/PrivateRoute";
 import VehicleDetailsPage from "../pages/VehicleDetailsPage";
 import UpdateVehicleDetailsPage from "../pages/UpdateVehicleDeatilsPage";
 import ErrorPage from "../pages/ErrorPage";
+import AboutUs from "../pages/AboutUs";
+import PrivacyTerms from "../pages/PrivacyTerms";
+
+import DashboardLayout from "../Layouts/DashboardLayout";
+import DashboardHome from "../pages/Dashboard/DashboardHome";
+import Profile from "../pages/Dashboard/Profile";
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -23,66 +30,27 @@ const router = createBrowserRouter([
       {
         path: "",
         element: <Home></Home>,
-        loader:() => fetch("https://travelease-server-alpha.vercel.app/latest-vehicles").then(res => res.json()),
+        loader: () =>
+          fetch(
+            "https://travelease-server-alpha.vercel.app/latest-vehicles"
+          ).then((res) => res.json()),
       },
       {
         path: "/vehicles",
         element: <AllVehicles />,
       },
       {
-        path: "/add-vehicles",
-        element: (
-          <PrivateRoute>
-            <AddVehicles />
-          </PrivateRoute>
-        ),
+        path: "/aboutus",
+        element: <AboutUs></AboutUs>,
+      },
+      {
+        path: "/privacyterms",
+        element: <PrivacyTerms></PrivacyTerms>,
       },
 
-      {
-        path: "/my-vehicles",
-        element: (
-          <PrivateRoute>
-            <MyVehicles />
-          </PrivateRoute>
-        ),
-      },
-
-      {
-        path: "/my-bookings",
-        element: (
-          <PrivateRoute>
-            <MyBookings />
-          </PrivateRoute>
-        ),
-      },
       {
         path: "/vehicledetails/:id",
-        element: (
-          <PrivateRoute>
-            <VehicleDetailsPage></VehicleDetailsPage>
-          </PrivateRoute>
-        ),
-        loader: async ({ params }) => {
-          const res = await fetch(
-            `https://travelease-server-alpha.vercel.app/vehicles/${params.id}`
-          );
-
-          if (!res.ok) {
-            throw new Response("Not Found", { status: 404 });
-          }
-
-          const data = await res.json();
-          return data.result; 
-        },
-        hydrateFallbackElement: <LoadingPage></LoadingPage>,
-      },
-      {
-        path: "/update-vehicle/:id",
-        element: (
-          <PrivateRoute>
-            <UpdateVehicleDetailsPage />
-          </PrivateRoute>
-        ),
+        element: <VehicleDetailsPage></VehicleDetailsPage>,
         loader: async ({ params }) => {
           const res = await fetch(
             `https://travelease-server-alpha.vercel.app/vehicles/${params.id}`
@@ -95,10 +63,59 @@ const router = createBrowserRouter([
           const data = await res.json();
           return data.result;
         },
-        hydrateFallbackElement: <LoadingPage />,
+        hydrateFallbackElement: <LoadingPage></LoadingPage>,
       },
     ],
   },
+
+{
+  path: "/dashboard",
+  element: (
+    <PrivateRoute>
+      <DashboardLayout />
+    </PrivateRoute>
+  ),
+  children: [
+    {
+      index: true,
+      element: <DashboardHome />,
+    },
+    {
+      path: "add-vehicles",
+      element: <AddVehicles />,
+    },
+    {
+      path: "my-vehicles",
+      element: <MyVehicles />,
+    },
+    {
+      path: "my-bookings",
+      element: <MyBookings />,
+    },
+    {
+      path: "update-vehicle/:id",
+      element: <UpdateVehicleDetailsPage />, 
+      loader: async ({ params }) => {       
+        const res = await fetch(
+          `https://travelease-server-alpha.vercel.app/vehicles/${params.id}`
+        );
+
+        if (!res.ok) {
+          throw new Response("Not Found", { status: 404 });
+        }
+
+        const data = await res.json();
+        return data.result;
+      },
+      hydrateFallbackElement: <LoadingPage />,
+    },
+    {
+      path: "profile",
+      element: <Profile />,
+    },
+  ],
+},
+
 
   {
     path: "/auth",
